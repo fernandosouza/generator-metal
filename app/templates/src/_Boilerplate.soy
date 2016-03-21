@@ -1,12 +1,10 @@
-{namespace Templates.<%= capitalizeName %>}
+{namespace <%= capitalizeName %>}
 
 /**
  * This renders the main element.
  * @param? elementClasses
- * @param id
- * @skipUpdates elementClasses
  */
 {template .render}
-	<div id="{$id}" class="<%= lowercaseName %> component{$elementClasses ? ' ' + $elementClasses : ''}">
+	<div class="<%= lowercaseName %>{$elementClasses ? ' ' + $elementClasses : ''}">
 	</div>
 {/template}
