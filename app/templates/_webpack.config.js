@@ -2,6 +2,11 @@ const webpack = require('webpack');
 
 module.exports = {
 	entry: './src/<%= componentName %>.js',
+	devtool: 'source-map',
+	devServer: {
+		contentBase: ['./build', './demos'],
+		port: 9000
+	},
 	module: {
 		rules: [{
 			test: /\.js$/,

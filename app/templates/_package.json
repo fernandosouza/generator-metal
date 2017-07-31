@@ -23,7 +23,7 @@
 		"prepublish": "npm run soy && npm run compile",<% } else { %>
 		"prepublish": "npm run compile",<% } %><% if (templateLanguage === 'Soy') { %>
 		"soy": "metalsoy --soyDeps node_modules/metal*/src/**/*.soy node_modules/clay*/src/**/*.soy",<% } %>
-		"start": "http-server . -p 4000",<% if (templateLanguage === 'Soy') { %>
+		"start": "webpack-dev-server --open",<% if (templateLanguage === 'Soy') { %>
 		"test": "npm run soy && <% if (testEnviroment === 'Karma') { %>karma start<% } else { %>jest<% } %>"<% } else { %>
 		"test": "<% if (testEnviroment === 'Karma') { %>karma start<% } else { %>jest<% } %>"<% } %>
 	},
@@ -52,9 +52,8 @@
 		"babel-plugin-transform-node-env-inline": "^0.1.1",
 		"babel-preset-metal": "^4.0.0"<% if (templateLanguage === 'JSX') { %>,
 		"babel-preset-metal-jsx": "^0.0.2"<% } %><% if (superClass === 'Component') { %>,
-		"css-loader": "^0.28.4"<% } %>,<% if (testEnviroment === 'Karma') { %>
-		"extract-text-webpack-plugin": "^3.0.0",<% } %>
-		"http-server": "^0.9.0"<% if (superClass === 'Component') { %>,
+		"css-loader": "^0.28.4"<% } %><% if (testEnviroment === 'Karma') { %>,
+		"extract-text-webpack-plugin": "^3.0.0",<% } %><% if (superClass === 'Component') { %>,
 		"identity-obj-proxy": "^3.0.0"<% } %>,
 		"jest": "^20.0.4"<% if (buildFormat === 'jquery') { %>,
 		"jquery": "^2.2.0"<% } %><% if (testEnviroment === 'Karma') { %>,
@@ -69,7 +68,8 @@
 		"sass-loader": "^6.0.6",
 		"style-loader": "^0.18.2"<% } %><% if (buildFormat === 'amd') { %>,
 		"requirejs": "^2.1.0"<% } %>,
-		"webpack": "^3.0.0"
+		"webpack": "^3.0.0",
+		"webpack-dev-server": "^2.6.1"
 	},
 	"jest": {
 		"resolver": "metal-lerna-jest-resolver",<% if (buildFormat === 'jquery') { %>
