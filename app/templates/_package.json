@@ -19,10 +19,12 @@
 		"build": "npm run soy && webpack",<% } else { %>
 		"build": "webpack",<% } %>
 		"compile": "babel --presets metal -d lib/ src/",
+		"dev": "concurrently -k 'npm run soy:watch' 'npm run start'",
 		"postinstall": "npm run build",<% if (templateLanguage === 'Soy') { %>
 		"prepublish": "npm run soy && npm run compile",<% } else { %>
 		"prepublish": "npm run compile",<% } %><% if (templateLanguage === 'Soy') { %>
-		"soy": "metalsoy --soyDeps node_modules/metal*/src/**/*.soy node_modules/clay*/src/**/*.soy",<% } %>
+		"soy": "metalsoy --soyDeps node_modules/metal*/src/**/*.soy node_modules/clay*/src/**/*.soy",
+		"soy:watch": "metal-soy-watch",<% } %>
 		"start": "webpack-dev-server --open",<% if (templateLanguage === 'Soy') { %>
 		"test": "npm run soy && <% if (testEnviroment === 'Karma') { %>karma start<% } else { %>jest<% } %>"<% } else { %>
 		"test": "<% if (testEnviroment === 'Karma') { %>karma start<% } else { %>jest<% } %>"<% } %>
@@ -51,7 +53,8 @@
 		"babel-loader": "^7.0.0",
 		"babel-plugin-transform-node-env-inline": "^0.1.1",
 		"babel-preset-metal": "^4.0.0"<% if (templateLanguage === 'JSX') { %>,
-		"babel-preset-metal-jsx": "^0.0.2"<% } %><% if (superClass === 'Component') { %>,
+		"babel-preset-metal-jsx": "^0.0.2"<% } %><% if (templateLanguage === 'Soy') { %>,
+		"concurrently": "^3.5.0"<% } %><% if (superClass === 'Component') { %>,
 		"css-loader": "^0.28.4"<% } %><% if (testEnviroment === 'Karma') { %>,
 		"extract-text-webpack-plugin": "^3.0.0",<% } %><% if (superClass === 'Component') { %>,
 		"identity-obj-proxy": "^3.0.0"<% } %>,
@@ -65,7 +68,8 @@
 		"metal-karma-config": "^2.3.1"<% } %><% if (templateLanguage === 'Soy') { %>,
 		"metal-tools-soy": "^4.2.1"<% } %><% if (superClass === 'Component') { %>,
 		"node-sass": "^4.5.3",
-		"sass-loader": "^6.0.6",
+		"sass-loader": "^6.0.6"<% if (templateLanguage === 'Soy') { %>,
+		"metal-soy-watch": "fernandosouza/metal-soy-watch#v2.0",<% } %>
 		"style-loader": "^0.18.2"<% } %><% if (buildFormat === 'amd') { %>,
 		"requirejs": "^2.1.0"<% } %>,
 		"webpack": "^3.0.0",
