@@ -69,7 +69,7 @@
 		"metal-tools-soy": "^4.2.1"<% } %><% if (superClass === 'Component') { %>,
 		"node-sass": "^4.5.3",
 		"sass-loader": "^6.0.6"<% if (templateLanguage === 'Soy') { %>,
-		"metal-soy-watch": "fernandosouza/metal-soy-watch#v2.0",<% } %>
+		"metal-soy-watch": "2.0.0",<% } %>
 		"style-loader": "^0.18.2"<% } %><% if (buildFormat === 'amd') { %>,
 		"requirejs": "^2.1.0"<% } %>,
 		"webpack": "^3.0.0",
